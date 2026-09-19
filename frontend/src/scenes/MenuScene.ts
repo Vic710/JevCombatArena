@@ -107,10 +107,10 @@ export default class MenuScene extends Phaser.Scene {
         color: "#ffffff",
       })
       .setOrigin(0, 0.5);
-
-    this.createSpeedButton(310, 178, "⚡ 100ms (Fast)", 100);
-    this.createSpeedButton(440, 178, "⏱️ 200ms (Normal)", 200);
-    this.createSpeedButton(570, 178, "🐢 300ms (Chill)", 300);
+    this.createSpeedButton(315, 178, "⚡ 70ms (Insane)", 70, 98);
+    this.createSpeedButton(420, 178, "⚡ 100ms (Fast)", 100, 98);
+    this.createSpeedButton(525, 178, "⏱️ 200ms (Normal)", 200, 98);
+    this.createSpeedButton(630, 178, "🐢 300ms (Slow)", 300, 98);
     this.updateSpeedButtonStyles();
 
     // ── Section 4: Personalities Config Panel ────────────────────────────────
@@ -229,8 +229,8 @@ export default class MenuScene extends Phaser.Scene {
     this.countLabel.setText(`${this.getTotalAgents()} Agents`);
   }
 
-  private createSpeedButton(x: number, y: number, label: string, ms: number): void {
-    const bg = this.add.rectangle(x, y, 120, 24, 0x22223a).setInteractive({ useHandCursor: true });
+  private createSpeedButton(x: number, y: number, label: string, ms: number, width = 98): void {
+    const bg = this.add.rectangle(x, y, width, 24, 0x22223a).setInteractive({ useHandCursor: true });
     bg.setStrokeStyle(1, 0x444466);
 
     const text = this.add
