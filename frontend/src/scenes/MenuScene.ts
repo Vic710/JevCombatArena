@@ -107,7 +107,7 @@ export default class MenuScene extends Phaser.Scene {
         color: "#ffffff",
       })
       .setOrigin(0, 0.5);
-    this.createSpeedButton(315, 178, "⚡ 70ms (Insane)", 70, 98);
+    // this.createSpeedButton(315, 178, "⚡ 70ms (Insane)", 70, 98);
     this.createSpeedButton(420, 178, "⚡ 100ms (Fast)", 100, 98);
     this.createSpeedButton(525, 178, "⏱️ 200ms (Normal)", 200, 98);
     this.createSpeedButton(630, 178, "🐢 300ms (Slow)", 300, 98);

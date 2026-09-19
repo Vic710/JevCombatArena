@@ -93,7 +93,7 @@ export const GAME_CONFIG: GameConfig = {
   maxHp: 100,
   startHeals: 3,
   moveSpeed: 160,
-  meleeRadius: 60,
+  meleeRadius: 75,
   meleeDamage: 20,
   meleeCooldownMs: 1000,
   bulletSpeed: 320,

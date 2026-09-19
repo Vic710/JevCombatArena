@@ -60,7 +60,6 @@ export interface GameState {
     maxHp: number;
     heals: number;
     distance: number;
-    inMeleeRange: boolean;
     dx: number;
     dy: number;
     bestMoveTowardTarget: NpcMoveAction;

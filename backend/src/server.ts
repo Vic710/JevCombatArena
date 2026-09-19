@@ -66,7 +66,6 @@ interface GameState {
     maxHp: number;
     heals: number;
     distance: number;
-    inMeleeRange: boolean;
     dx: number;
     dy: number;
     bestMoveTowardTarget: NpcMoveAction;
@@ -133,7 +132,6 @@ async function askJev(state: GameState): Promise<JevDecisionResult> {
         name: primaryTarget.name,
         hp: primaryTarget.hp,
         distance_px: Math.round(primaryTarget.distance),
-        in_melee_range: primaryTarget.inMeleeRange,
         dx: Math.round(primaryTarget.dx),
         dy: Math.round(primaryTarget.dy),
         direction_toward_target: primaryTarget.bestMoveTowardTarget,
@@ -150,17 +148,24 @@ async function askJev(state: GameState): Promise<JevDecisionResult> {
     other_living_enemies_count: (state.otherEnemies || []).length,
     arena: { width: state.arenaWidth ?? 800, height: state.arenaHeight ?? 600 },
     combat_rules: {
-      melee: "Deals 20 damage within 60px radius and pushes enemy back",
+      movement_freedom: "You can move at full speed while attacking, shooting, dashing, or healing simultaneously",
+      melee: "Deals 20 damage to enemies within 75px radius and knocks them back (time your swing proactively as you close in)",
       bullet: "Auto-aimed projectile at target dealing 20 damage",
-      dash: "3x speed burst in movement direction for 150ms (2.5s cooldown)",
-      heal: "Restores HP back to 100 (limited charges)",
+      dash: "3x speed burst in movement direction for 150ms (2.5s cooldown; great for dodging, gap closing, or escaping)",
+      heal: "Restores HP back to 100 (limited charges; use strategically when HP is low)",
     },
   };
 
   const promptHeader = `You are ${self.name}, playing in a real-time top-down arena deathmatch.
 Your Combat Personality: "${self.personality || "Tactical combatant"}".
 Your Objective: Win the match as the last combatant standing while following your personality style!
-Regardless of personality, ensure that your actual goal is to win the match with all the tools at your desposal.`;
+Regardless of personality, ensure your actual goal is to win the match with all the tools at your disposal.
+
+General Combat Understanding:
+- Actions are simultaneous: you can move, swing melee, shoot, dash, and heal all in the same moment without stopping.
+- Predictive melee timing: swing as you close into 75px range so your hitbox connects as you swipe past.
+- Projectile evasion: use bullet speeds and trajectories to sidestep or dash out of bullet paths.
+- Cooldown & distance awareness: capitalize on openings, use dash to reposition or escape when low, and manage heal charges efficiently.`;
 
   // Ask independent action judgments in parallel against the game state
   const response = await client.systemOne({
@@ -185,7 +190,7 @@ Choose your continuous movement vector for this tick to try to win while staying
       melee_attack: noul(
         `${promptHeader}
 Should ${self.name} execute a MELEE attack right now?
-(Deals 20 damage to enemies within 60px radius and knocks them back).`
+(Deals 20 damage to enemies within 75px radius and knocks them back).`
       ),
 
       shoot_bullet: noul(

@@ -343,7 +343,6 @@ export default class GameScene extends Phaser.Scene {
         maxHp: primaryTarget.maxHp,
         heals: primaryTarget.heals,
         distance: dist,
-        inMeleeRange: dist <= GAME_CONFIG.meleeRadius,
         dx,
         dy,
         bestMoveTowardTarget: bestMove,
