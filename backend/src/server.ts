@@ -159,7 +159,7 @@ async function askJev(state: GameState): Promise<JevDecisionResult> {
   const promptHeader = `You are ${self.name}, playing in a real-time top-down arena deathmatch.
 Your Combat Personality: "${self.personality || "Tactical combatant"}".
 Your Objective: Win the match as the last combatant standing while following your personality style!
-Regardless of personality, ensure your actual goal is to win the match with all the tools at your disposal.
+Regardless of personality, ensure your actual goal is to win the match with all the tools at your disposal but strategise as per personality.
 
 General Combat Understanding:
 - Actions are simultaneous: you can move, swing melee, shoot, dash, and heal all in the same moment without stopping.
