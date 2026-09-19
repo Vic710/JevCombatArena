@@ -140,15 +140,15 @@ async function askJev(state: GameState): Promise<JevDecisionResult> {
         direction_away_from_target: primaryTarget.bestMoveAwayFromTarget,
       }
       : null,
-    bullets_in_arena: state.bullets.map((b) => ({
-      distance_px: b.distancePx,
-      relative_dx: b.relativeDx,
-      relative_dy: b.relativeDy,
-      speed_x: b.vx,
-      speed_y: b.vy,
+    bullets_in_arena: (state.bullets || (state as any).incomingBullets || []).map((b: any) => ({
+      distance_px: b.distancePx ?? b.distanceToAgent ?? 0,
+      relative_dx: b.relativeDx ?? b.x ?? 0,
+      relative_dy: b.relativeDy ?? b.y ?? 0,
+      speed_x: b.vx ?? 0,
+      speed_y: b.vy ?? 0,
     })),
-    other_living_enemies_count: state.otherEnemies.length,
-    arena: { width: state.arenaWidth, height: state.arenaHeight },
+    other_living_enemies_count: (state.otherEnemies || []).length,
+    arena: { width: state.arenaWidth ?? 800, height: state.arenaHeight ?? 600 },
     combat_rules: {
       melee: "Deals 20 damage within 60px radius and pushes enemy back",
       bullet: "Auto-aimed projectile at target dealing 20 damage",
@@ -230,7 +230,7 @@ Should ${self.name} use a HEAL charge right now?
     .join(" + ");
 
   console.log(
-    `[Jev:${self.name}] [${actionsTaken}] | targetDist=${primaryTarget ? Math.round(primaryTarget.distance) : "none"} bullets=${state.bullets.length} HP=${self.hp}`
+    `[Jev:${self.name}] [${actionsTaken}] | targetDist=${primaryTarget ? Math.round(primaryTarget.distance) : "none"} bullets=${(state.bullets || []).length} HP=${self.hp}`
   );
 
   return { moveAction, shouldMelee, shouldShoot, shouldHeal, shouldDash };
