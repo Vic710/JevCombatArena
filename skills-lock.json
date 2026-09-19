@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "caveman": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman/SKILL.md",
+      "computedHash": "43ab924e4422a09c24d16dc81349771513bc801c1be21077c252952fe753e6b6"
+    },
+    "phaser-core": {
+      "source": "gamedev-skills/awesome-gamedev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-engines/phaser-core/SKILL.md",
+      "computedHash": "44ce9ffd8700dea87d532b2315aaac8f7c3b56ab7cf6e9380829dac7af9b5076"
+    },
+    "typesafe-ai": {
+      "source": "typesafe-ai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/typesafe-ai/SKILL.md",
+      "computedHash": "a6ed7d8a3d2b2d962f8e44b17663767c433b7d1fc32d1ed0349a44f7372513e8"
+    }
+  }
+}

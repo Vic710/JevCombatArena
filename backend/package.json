@@ -1,0 +1,20 @@
+{
+  "name": "jevgame-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "dotenv": "^18.0.1",
+    "hono": "^4.6.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}

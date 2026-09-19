@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Production builds
+dist/
+build/
+
+# Environment variables & API Keys (CRITICAL: NEVER COMMIT KEYS)
+.env
+.env.*
+!.env.example
+key.txt
+keys.txt
+*.key
+*.pem
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary media & generated cache
+.tempmediaStorage/
+.system_generated/
+.agents/
